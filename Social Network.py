@@ -1,14 +1,10 @@
 # Personal Expense Tracker - Concise & Complete Implementation
 # Student: Vedant Khedkar (CD25060) · Python Lab Assessment
-
 from collections import deque
-
-
 # =========================================================
 # SOCIAL NETWORK FRIEND RECOMMENDATION SYSTEM
 # Using Graph and Breadth First Search (BFS)
 # =========================================================
-
 
 # Dictionary to store users
 users = {}
@@ -136,7 +132,6 @@ def get_recommendations():
         key=lambda x: x[1],
         reverse=True
     )
-
     # Display recommendations
     print("\n================================")
     print(" FRIEND RECOMMENDATIONS")
@@ -150,9 +145,7 @@ def get_recommendations():
         print("No recommendations available.")
 
     else:
-
         rank = 1
-
         for friend_id, count in recommendations:
 
             print(
@@ -165,124 +158,84 @@ def get_recommendations():
             )
 
             rank += 1
-
-
 # =========================================================
 # FUNCTION 4: DISPLAY NETWORK
 # =========================================================
-
 def display_network():
-
     print("\n================================")
     print("       NETWORK OVERVIEW")
     print("================================")
-
     print("Total Users:", len(users))
-
     # Calculate total friendships
     total = 0
-
     for user in graph:
         total = total + len(graph[user])
-
     # Each friendship is counted twice
     total = total // 2
-
     print("Total Friendships:", total)
-
     print("\nUsers and their Friends:")
-
     for user_id in users:
-
         print("\nUser:",
               users[user_id],
               "(" + user_id + ")")
-
         if len(graph[user_id]) == 0:
-
             print("No friends")
-
         else:
-
             for friend in graph[user_id]:
-
                 print(
                     " ->",
                     users[friend],
                     "(" + friend + ")"
                 )
 
-
 # =========================================================
 # FUNCTION 5: DISPLAY USERS
 # =========================================================
-
 def display_users():
-
     print("\n================================")
     print("          ALL USERS")
     print("================================")
-
     if len(users) == 0:
-
         print("No users available.")
-
     else:
-
         for user_id in users:
-
             print(
                 user_id,
                 "-",
                 users[user_id]
             )
 
-
 # =========================================================
 # FUNCTION 6: SHOW DIRECT FRIENDS
 # =========================================================
-
 def show_friends():
-
     user_id = input("Enter User ID: ")
-
     if user_id not in users:
-
         print("User not found!")
         return
-
     print("\nDirect Friends of",
           users[user_id])
-
     friends = graph[user_id]
-
     if len(friends) == 0:
-
         print("No direct friends.")
-
     else:
-
         for friend in friends:
-
             print(
                 "->",
                 users[friend],
                 "(" + friend + ")"
             )
 
-
 # =========================================================
 # FUNCTION 7: ADD SAMPLE DATA
 # =========================================================
-
 def add_sample_data():
-
     users["U001"] = "Vedant"
     users["U002"] = "Alice"
     users["U003"] = "Charlie"
     users["U004"] = "Bob"
     users["U005"] = "Diana"
-
+    
     graph["U001"] = ["U002", "U004"]
     graph["U002"] = ["U001", "U003", "U005"]
     graph["U003"] = ["U002", "U004", "U005"]
@@ -291,13 +244,10 @@ def add_sample_data():
 
     print("Sample data added successfully!")
 
-
 # =========================================================
 # MAIN MENU
 # =========================================================
-
 while True:
-
     print("\n")
     print("==========================================")
     print("   SOCIAL NETWORK FRIEND RECOMMENDATION")
@@ -315,61 +265,37 @@ while True:
     print("==========================================")
 
     choice = input("Enter your choice: ")
-
-
     # OPTION 1
     if choice == "1":
-
-        add_user()
-
-
+       add_user()
     # OPTION 2
     elif choice == "2":
 
         add_friendship()
 
-
     # OPTION 3
     elif choice == "3":
-
         get_recommendations()
-
-
     # OPTION 4
     elif choice == "4":
-
         display_network()
-
-
     # OPTION 5
     elif choice == "5":
-
         display_users()
-
-
     # OPTION 6
     elif choice == "6":
-
         show_friends()
-
-
     # OPTION 7
     elif choice == "7":
-
         add_sample_data()
-
 
     # OPTION 8
     elif choice == "8":
-
         print("\nThank you!")
         print("Program ended.")
-
-        break
-
+    break
 
     # INVALID CHOICE
     else:
-
         print("\nInvalid choice!")
         print("Please enter a number from 1 to 8.")
